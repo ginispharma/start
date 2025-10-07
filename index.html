@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <title>Τα δικά μου χρήσιμα</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="image/png" href="assets/unnamed.png">
+   <link rel="shortcut icon" type="image/png" href="assets/unnamed.png">
 
   <style>
   
@@ -52,7 +52,10 @@
     display:flex; justify-content:center; align-items:center;
     gap:10px; margin:12px 0 18px; position:relative;
   }
-  .topbar-right { margin-left:auto; }
+  .topbar-right {
+  position: relative;
+  right: -286px; /* Πάει αριστερά */
+}
 
   /* -------------------------------------------------
      5. ΚΟΥΜΠΙΑ
@@ -213,9 +216,15 @@
     max-width:95%;
   }
   .link-desc {
-    font-size:8px; color:rgba(255,255,255,.6); margin-top:2px;
-    max-width:90%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-  }
+  font-size: 8px; 
+  color: rgba(255,255,255,.6); 
+  margin-top: 2px;
+  max-width: 90%; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  max-width: 15ch; /* 👈 ΝΕΟ - περιορίζει σε 15 χαρακτήρες */
+}
 
   /* Hover σε links */
   a { color:var(--text); text-decoration:none; transition:.25s; }
@@ -245,89 +254,90 @@
   z-index: 0;
 }
 
-/* κουμπί με τις τρεις τελείες */
 .card .menu-btn {
   position: absolute;
-  top: 4px;        /* ✅ κολλάει στην κορυφή */
-  right: 4px;      /* ✅ πάει δεξιά */
-  width: 14px;
-  height: 20px;
-  border: 1px solid #000;
-  border-radius: 5px;
-  padding: 2px;
-  background: rgba(0,0,0,0.4);
-  color: var(--text);
-  font-size: 10px;
-  line-height: 16px;
+  top: 4px;
+  right: 4px;
+  width: 15px;
+  height: 15px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent); /* ΜΠΛΕ όπως το accent χρώμα */
+  color: white; /* ΛΕΥΚΟ κείμενο για καλύτερη αντίθεση */
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 18px;
   text-align: center;
   cursor: pointer;
   opacity: 0;
-  transition: opacity .2s;
+  transition: all 0.3s ease;
   z-index: 1100;
   pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
-
 .card:hover .menu-btn {
   opacity: 1;
+  transform: scale(1.1);
 }
-
+.card .menu-btn:hover {
+  background: color-mix(in srgb, var(--accent) 80%, #000 20%); /* Πιο σκούρο μπλε στο hover */
+  transform: scale(1.15);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  display: flex;
+}
 /* popup με τα κουμπάκια */
 .card .menu-popup {
   position: absolute;
-  top: -32px;        /* εμφανίζεται ΠΑΝΩ από τις ⋮ */
-  right: 8px;
-  background: var(--bg2);
-  border: 2px solid var(--border);
-  border-radius: 4px;
-  padding: 1px;   /* μικρότερο περιθώριο μέσα */
-  gap: 1px;       /* μικρότερο κενό ανάμεσα στα κουμπιά */
+  top: -32px;                /* λίγο πιο κοντά στην κάρτα */
+  right: 2px;
   display: none;
-  flex-direction: row; /* κάθετα τα κουμπάκια */
-  gap: 4px;
-  z-index: 1200;
+  flex-direction: row;
+  gap: 2px;
+  background: #1b2631;
+  border: 1px solid #000;
+  border-radius: 6px;
+  padding: 2px 4px;          /* μικρότερο padding */
+  z-index: 1000;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+  transform: scale(0.9);     /* μικραίνει ολόκληρο το πλαίσιο */
+  transform-origin: top right;
 }
 
-/* styling για τα κουμπιά μέσα στο popup */
+/* styling για τα κουμπάκια */
 .card .menu-popup button {
-  background: transparent;
-  border: none;
+  background: #2c3e50;
+  border: 1px solid #000;
+  border-radius: 50%;
+  width: 24px;               /* μικρότεροι κύκλοι */
+  height: 24px;
   cursor: pointer;
-  padding: 1px;       /* πιο μικρό */
-}
-
-.card .menu-popup button svg {
-  width: 14px;        /* μικρότερο εικονίδιο */
-  height: 14px;
-  fill: var(--text);
-}
-.card .menu-popup button:hover svg {
-  fill: var(--accent);
-}
-
-.card .menu-popup button {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
+/* εικονίδιο μέσα στο κουμπί */
 .card .menu-popup button svg {
-  width: 16px;
-  height: 16px;
-  fill: var(--text);
+  width: 10px;
+  height: 10px;
+  fill: #fff;
   transition: fill 0.2s ease;
 }
 
-/* ✨ Εφέ στο hover */
+/* hover εφέ */
 .card .menu-popup button:hover {
-  transform: scale(1.2);            /* μεγαλώνει λίγο */
-  background: rgba(255,255,255,0.1); /* ή βάζεις φόντο */
-  border-radius: 4px;
+  transform: scale(1.1);
+  background: var(--accent);
+ display: flex;
 }
 
 .card .menu-popup button:hover svg {
-  fill: var(--accent); /* αλλάζει χρώμα */
+  fill: #fff;
 }
 
 
@@ -673,11 +683,91 @@ footer {
   opacity: 0.7;
 }
 
+/* -------------------------------------------------
+   ΡΟΛΟΙ - ΗΜΕΡΟΜΗΝΙΑ (ΔΕΞΙΑ ΣΕ ΙΔΙΑ ΓΡΑΜΜΗ)
+------------------------------------------------- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+  padding: 0 10px 0 50px; /* ΑΥΞΗΣΗ ΑΡΙΣΤΕΡΟΥ ΚΕΝΟΥ: 10px -> 50px */
+}
 
+.datetime-widget {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  text-align: center;
+  min-width: 160px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+  margin-left: 10px;
+}
 
+.datetime-widget .time {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 2px;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 10px rgba(244, 162, 97, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
 
+.datetime-widget .date {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  opacity: 0.9;
+}
 
+/* Κεντρικό content */
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  justify-content: center;
+  margin-left: 30px; /* Αντιστάθμιση για το επιπλέον padding */
+}
 
+/* Responsive για κινητά */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    padding: 0 10px; /* Reset padding σε κινητά */
+  }
+  
+  .datetime-widget {
+    margin-left: 0;
+    order: -1;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .logo-title {
+    flex-direction: column;
+    margin-left: 0; /* Reset margin σε κινητά */
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Εναλλακτικό στυλ με gradient */
+.datetime-widget.gradient {
+  background: linear-gradient(135deg, rgba(244, 162, 97, 0.2), rgba(42, 157, 244, 0.2));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
 
 
@@ -707,14 +797,24 @@ footer {
 <div class="wrap">
 
 <header>
+
   <div class="logo-title">
     <img src="assets/unnamed.png" alt="Logo">
     <div class="titles">
-     <h1 class="typewriter">Τα δικά μου χρήσιμα</h1>
+      <h1 class="typewriter">Τα δικά μου χρήσιμα</h1>
       <h2>Φαρμακείο Γκίνης Κ. Πέτρος, Πολύγωνο.</h2>
       <h3>Χρήσιμα εργαλεία και σύνδεσμοι</h3>
     </div>
   </div>
+  
+  <!-- Ρολόι - Ημερομηνία -->
+  <div class="datetime-widget">
+    <div class="time" id="currentTime">00:00:00</div>
+    <div class="date" id="currentDate">Παρασκευή, 1 Ιανουαρίου</div>
+  </div>
+  
+  
+  
 </header>
 
 
@@ -756,6 +856,7 @@ footer {
     <div class="note">Φτιαγμένο με αγάπη από το Doukas Pharmacy Support®</div>
   </div>
 </footer>
+
 <!-- ===== MODAL ΝΕΟΥ LINK ===== -->
 <div class="modal" id="modalForm">
   <div class="box">
@@ -832,7 +933,7 @@ footer {
 </div>
 
 <div class="theme-toggle-wrapper">
-  <span class="version">ver. 2.2.3i</span>
+  <span class="version">ver. 2.3.9b</span>
 </div>
 
 
@@ -894,6 +995,8 @@ footer {
 </div>
 
 
+
+
 <!-- ===== ΚΡΥΦΟ ΚΟΥΜΠΙ ΓΙΑ ΠΑΛΕΤΑ ===== -->
 <div id="paletteBtn" data-tooltip="Ρυθμίσεις χρωμάτων"></div>
 
@@ -917,6 +1020,34 @@ let themeDefault = {
   bg1:"#1f1f1f", bg2:"#232429", card:"#2b2d33", text:"#eaeef5", accent:"#2f80ed"
 };
 
+/* ===============================
+   📌 Default Favicon Generator
+   =============================== */
+function getDefaultFavicon() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 64; 
+    canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+    
+    // Φόντο
+    ctx.fillStyle = '#415a77';
+    ctx.fillRect(0, 0, 64, 64);
+    
+    // Κύκλος
+    ctx.fillStyle = '#e0e1dd';
+    ctx.beginPath();
+    ctx.arc(32, 32, 20, 0, 2 * Math.PI);
+    ctx.fill();
+    
+    // Γράμμα "L"
+    ctx.fillStyle = '#415a77';
+    ctx.font = 'bold 24px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('L', 32, 32);
+    
+    return canvas.toDataURL('image/png');
+}
 /* ===============================
    📌 SVG Εικονίδια (διαφανή)
    =============================== */
@@ -1045,7 +1176,6 @@ function showAutoBackups() {
 // σύνδεση του κουμπιού
 document.getElementById("autoBackupBtn").addEventListener("click", showAutoBackups);
 
-
 /* ===============================
    📌 Render — Σχεδίαση UI (με Pin + Drag&Drop για νέα links)
    =============================== */
@@ -1137,17 +1267,17 @@ function render(){
       else if(l.iconType === "url" && l.iconValue){
         initialIcon = l.iconValue;
       }
-      else if(l.url){
-        try{
-          const domain = (new URL(l.url)).hostname;
-          if(domain) initialIcon = `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
-          else initialIcon = 'assets/default-favicon.png';
-        }catch(e){
-          initialIcon = 'assets/default-favicon.png';
-        }
-      } else {
-        initialIcon = 'assets/default-favicon.png';
-      }
+ else if(l.url){
+  try{
+    const domain = (new URL(l.url)).hostname;
+    if(domain) initialIcon = `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
+    else initialIcon = getDefaultFavicon();  // ΜΟΝΟ αν αποτύχει
+  }catch(e){
+    initialIcon = getDefaultFavicon();  // ΜΟΝΟ αν αποτύχει
+  }
+} else {
+  initialIcon = getDefaultFavicon();  // ΜΟΝΟ αν δεν υπάρχει URL
+}
 
       const card = document.createElement("div");
       card.className="card";
@@ -1156,14 +1286,14 @@ function render(){
       card.dataset.idx=idx;
       if(l.pinned) card.classList.add("pinned");
 
-      // 👉 ΝΕΟ μενού
+      // 👉 ΝΕΟ μενού  κουμπάκια
       card.innerHTML = `
         <div class="menu-btn">⋮</div>
         <div class="menu-popup">
-          <button class="edit" aria-label="Επεξεργασία">${svgIcon('edit')}</button>
-          <button class="del" aria-label="Διαγραφή">${svgIcon('delete')}</button>
-          <button class="pin" aria-label="Pin / Unpin">${svgIcon('pin', !!l.pinned)}</button>
-        </div>
+  <button class="edit">✏️</button>
+  <button class="delete">🗑️</button>
+  <button class="pin">📌</button>
+</div>
       `;
 
       const a = document.createElement("a");
@@ -1177,27 +1307,28 @@ function render(){
       img.setAttribute("alt", l.name || "");
       img.draggable = false;
 
-      img._triedDefault = false;
-      img._triedBuiltin = false;
-
-      const onErr = function(){
-        img.removeEventListener('error', onErr);
-        if(!img._triedDefault){
-          img._triedDefault = true;
-          img.addEventListener('error', onErr);
-          img.src = 'assets/default-favicon.png';
-        } else if(!img._triedBuiltin){
-          img._triedBuiltin = true;
-          img.src = builtinToDataUrl("link");
-        }
+      // ✅ ΒΕΛΤΙΩΜΕΝΟ FAVICON LOADING (Απλοποιημένο)
+      img.onerror = function() {
+        this.src = getDefaultFavicon();
+        this.style.width = '40px';
+        this.style.height = '40px';
       };
-      img.addEventListener('error', onErr);
 
-      img.addEventListener('load', function(){
-        if(img.naturalWidth < 32){
-          img.src = 'assets/default-favicon.png';
+      img.onload = function() {
+        // Έλεγχος για πολύ μικρά favicons
+        if(this.naturalWidth < 16 || this.naturalHeight < 16){
+          this.src = getDefaultFavicon();
         }
-      });
+        // Έλεγχος για πολύ μεγάλα favicons
+        else if(this.naturalWidth > 64 || this.naturalHeight > 64) {
+          this.style.maxWidth = '40px';
+          this.style.maxHeight = '40px';
+          this.style.objectFit = 'contain';
+        }
+        // Normalize μέγεθος για όλα τα favicons
+        this.style.width = '40px';
+        this.style.height = '40px';
+      };
 
       img.src = initialIcon;
 
@@ -1208,7 +1339,7 @@ function render(){
 
       const descDiv = document.createElement("div");
       descDiv.className = "link-desc";
-      descDiv.textContent = l.desc || "";
+      descDiv.textContent = (l.desc || "").slice(0, 15);
 
       a.appendChild(img);
       a.appendChild(titleDiv);
@@ -1248,9 +1379,7 @@ function render(){
 
     wrap.appendChild(sec);
   });
-}
-
-/* ===============================
+}/* ===============================
    📌 Συνάρτηση για να βρίσκουμε τον τίτλο σελίδας
    =============================== */
 async function fetchTitle(url) {
@@ -1444,7 +1573,7 @@ document.addEventListener("click", e => {
   /* ---------------------------
      Διαγραφή link
   --------------------------- */
-  if (target.closest(".del")) {
+  if (target.closest(".delete")) {
     const c = target.closest(".card");
     const catName = c.dataset.cat;
     pushHistory();
@@ -1542,7 +1671,153 @@ document.addEventListener("click", e => {
   }
 });
 
+/* ===============================
+   📌 Ελέγχει και συμπιέζει μεγάλες εικόνες
+   =============================== */
+function compressImageIfNeeded(dataUrl, maxWidth = 64, maxHeight = 64, quality = 0.8) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = function() {
+	
 
+      // Αν η εικόνα είναι μικρή, κράτα την ως έχει
+      if (img.width <= maxWidth && img.height <= maxHeight) {
+        resolve(dataUrl);
+        return;
+      }
+
+      // Συμπίεση για μεγάλες εικόνες
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Υπολογισμός νέων διαστάσεων διατηρώντας aspect ratio
+      let width = img.width;
+      let height = img.height;
+      
+      if (width > height) {
+        if (width > maxWidth) {
+          height = Math.round((height * maxWidth) / width);
+          width = maxWidth;
+        }
+      } else {
+        if (height > maxHeight) {
+          width = Math.round((width * maxHeight) / height);
+          height = maxHeight;
+        }
+      }
+      
+      canvas.width = width;
+      canvas.height = height;
+      
+      ctx.drawImage(img, 0, 0, width, height);
+      resolve(canvas.toDataURL('image/png', quality));
+    };
+    
+    img.onerror = function() {
+      // Αν αποτύχει το load, επέστρεψε default
+      resolve('assets/default-favicon.png');
+    };
+    
+    img.src = dataUrl;
+  });
+}
+
+/* ===============================
+   📌 Ενημέρωση loadData για έλεγχο εικόνων
+   =============================== */
+const originalLoadData = loadData;
+loadData = function() {
+  originalLoadData();
+  
+  // Έλεγχος και διόρθωση μεγάλων εικόνων
+  Object.keys(categories).forEach(cat => {
+    categories[cat].forEach(link => {
+      if (link.iconType === "upload" && link.iconValue && 
+          link.iconValue.startsWith('data:image') && 
+          link.iconValue.length > 5000) { // Αν είναι μεγάλη εικόνα (>5KB)
+        
+        compressImageIfNeeded(link.iconValue).then(compressed => {
+          link.iconValue = compressed;
+          saveData(); // Αποθήκευση αλλαγών
+        });
+      }
+    });
+  });
+};
+
+/* ===============================
+   📌 Ενημέρωση restore για έλεγχο εικόνων
+   =============================== */
+function safeRestore(data) {
+  // Επεξεργασία όλων των links για συμπίεση εικόνων
+  const processLinks = async () => {
+    for (const cat in data.categories) {
+      for (const link of data.categories[cat]) {
+        if (link.iconType === "upload" && link.iconValue && 
+            link.iconValue.startsWith('data:image')) {
+          
+          // Έλεγχος αν είναι μεγάλη εικόνα
+          if (link.iconValue.length > 5000) {
+            link.iconValue = await compressImageIfNeeded(link.iconValue);
+          }
+        }
+      }
+    }
+    
+    // Εφαρμογή των δεδομένων μετά την επεξεργασία
+    pushHistory();
+    categories = data.categories;
+    catOrder = data.catOrder;
+    
+    if (data.theme) {
+      applyTheme(data.theme);
+      saveTheme(data.theme);
+    }
+    
+    saveData();
+    render();
+    updateUndoBtn();
+  };
+  
+  processLinks();
+}
+
+/* ===============================
+   📌 Αντικατάσταση του restoreAutoBackup
+   =============================== */
+function restoreAutoBackup(index) {
+  const backups = JSON.parse(localStorage.getItem("autoBackups") || "[]");
+  
+  if (index < 0 || index >= backups.length) {
+    alert("Μη έγκυρη επιλογή backup!");
+    return;
+  }
+  
+  const backup = backups[index];
+  
+  if (confirm(`Επαναφορά από backup της ${backup.timestamp};\nΘα χάσετε τρέχουσες αλλαγές!`)) {
+    safeRestore(backup);
+    alert(`Επαναφορά ολοκληρώθηκε από backup: ${backup.timestamp}`);
+  }
+}
+
+/* ===============================
+   📌 Έλεγχος κατά την εκκίνηση
+   =============================== */
+function checkAndCompressExistingImages() {
+  Object.keys(categories).forEach(cat => {
+    categories[cat].forEach(async (link) => {
+      if (link.iconType === "upload" && link.iconValue && 
+          link.iconValue.startsWith('data:image') && 
+          link.iconValue.length > 10000) { // Ειδικά για πολύ μεγάλες εικόνες
+        
+        console.log("Συμπίεση μεγάλης εικόνας σε κατηγορία:", cat);
+        link.iconValue = await compressImageIfNeeded(link.iconValue, 64, 64, 0.7);
+        saveData();
+      }
+    });
+  });
+}
 
 
 
@@ -1784,6 +2059,113 @@ document.getElementById("themeSelect").addEventListener("change", e => {
 // κλήση στην εκκίνηση
 loadTheme();
 
+
+/* ===============================
+   📌 Auto-Backup System
+   =============================== */
+
+// Δημιουργία auto-backup κάθε φορά που αποθηκεύονται δεδομένα
+function createAutoBackup() {
+  const backupData = {
+    categories: JSON.parse(JSON.stringify(categories)),
+    catOrder: [...catOrder],
+    theme: getTheme(),
+    timestamp: new Date().toLocaleString('el-GR')
+  };
+  
+  // Λήψη υπαρχόντων backups
+  let backups = JSON.parse(localStorage.getItem("autoBackups") || "[]");
+  
+  // Προσθήκη νέου backup
+  backups.unshift(backupData);
+  
+  // Διατήρηση μόνο των 5 πιο πρόσφατων backups
+  if (backups.length > 5) {
+    backups = backups.slice(0, 5);
+  }
+  
+  // Αποθήκευση backups
+  localStorage.setItem("autoBackups", JSON.stringify(backups));
+  
+  console.log("Auto-backup created:", backupData.timestamp);
+}
+
+// Επαναφορά από auto-backup
+
+function restoreAutoBackup(index) {
+  const backups = JSON.parse(localStorage.getItem("autoBackups") || "[]");
+  
+  if (index < 0 || index >= backups.length) {
+    alert("Μη έγκυρη επιλογή backup!");
+    return;
+  }
+  
+  const backup = backups[index];
+  
+  if (confirm(`Επαναφορά από backup της ${backup.timestamp}`)) {
+    pushHistory();
+    
+    // ✅ DATA VALIDATION & CLEANUP
+    categories = {};
+    catOrder = [];
+    
+    // Επαλήθευση και καθαρισμός δεδομένων
+    Object.keys(backup.categories || {}).forEach(cat => {
+      categories[cat] = (backup.categories[cat] || []).map(link => ({
+        url: link.url || "",
+        name: link.name || "",
+        desc: link.desc || "",
+        iconType: link.iconType || "auto",
+        iconValue: link.iconValue || null,
+        pinned: !!link.pinned  // εξασφαλίζει boolean
+      }));
+      catOrder.push(cat);
+    });
+    
+    // Optimize εικόνων ΑΜΕΣΑ μετά το restore
+    setTimeout(async () => {
+      await optimizeAllExistingIcons();
+      saveData();
+      render();
+      updateUndoBtn();
+      alert("✅ Επαναφορά ολοκληρώθηκε! Τα εικονίδια βελτιστοποιήθηκαν.");
+    }, 100);
+  }
+}
+
+// Εμφάνιση λίστας auto-backups
+function showAutoBackups() {
+  const backups = JSON.parse(localStorage.getItem("autoBackups") || "[]");
+  if (!backups.length) {
+    alert("Δεν υπάρχει διαθέσιμο auto-backup!");
+    return;
+  }
+
+  let msg = "Διαθέσιμα Auto-Backups:\n\n";
+  backups.forEach((b, i) => {
+    msg += `${i}: ${b.timestamp} (${Object.keys(b.categories).length} κατηγορίες)\n`;
+  });
+  msg += "\nΠληκτρολόγησε 0,1,2,3,4 για να διαλέξεις:";
+
+  const choice = prompt(msg);
+  if (choice !== null && !isNaN(choice)) {
+    restoreAutoBackup(parseInt(choice));
+  }
+}
+
+// Τροποποίηση της saveData για αυτόματο backup
+const originalSaveData = saveData;
+saveData = function() {
+  originalSaveData();
+  createAutoBackup(); // Δημιουργία backup κάθε φορά που αποθηκεύονται δεδομένα
+};
+
+// Σύνδεση του κουμπιού auto-backup
+document.getElementById("autoBackupBtn").addEventListener("click", showAutoBackups);
+
+// Δημιουργία αρχικού backup κατά την εκκίνηση
+setTimeout(createAutoBackup, 1000);
+
 loadData(); 
 if(catOrder.length===0){
   categories={"Εισαγωγή":[]};
@@ -1825,6 +2207,44 @@ document.querySelectorAll("input[type=color]").forEach(input => {
   const sw=document.getElementById('swatch-'+id);
   if(el && sw) sw.style.background = el.value || getTheme()[id];
 });
+
+/* ===============================
+   📌 ΡΟΛΟΙ - ΗΜΕΡΟΜΗΝΙΑ
+   =============================== */
+function updateDateTime() {
+  const now = new Date();
+  
+  // Ελληνικά ονόματα ημερών και μηνών
+  const days = ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'];
+  const months = ['Ιανουαρίου', 'Φεβρουαρίου', 'Μαρτίου', 'Απριλίου', 'Μαΐου', 'Ιουνίου', 
+                 'Ιουλίου', 'Αυγούστου', 'Σεπτεμβρίου', 'Οκτωβρίου', 'Νοεμβρίου', 'Δεκεμβρίου'];
+  
+  // Ωρα
+  const time = now.toLocaleTimeString('el-GR', { 
+    hour: '2-digit', 
+    minute: '2-digit', 
+    second: '2-digit' 
+  });
+  
+  // Ημερομηνία
+  const dayName = days[now.getDay()];
+  const day = now.getDate();
+  const monthName = months[now.getMonth()];
+  const year = now.getFullYear();
+  
+  const date = `${dayName}, ${day} ${monthName} ${year}`;
+  
+  // Ενημέρωση DOM
+  const timeEl = document.getElementById('currentTime');
+  const dateEl = document.getElementById('currentDate');
+  
+  if (timeEl) timeEl.textContent = time;
+  if (dateEl) dateEl.textContent = date;
+}
+
+// Εκκίνηση ρολογιού
+updateDateTime();
+setInterval(updateDateTime, 1000);
 
 </script>
 </body>
