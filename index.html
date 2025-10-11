@@ -1,15 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="el">
 <head>
-
-  <meta charset="UTF-8">
-  <title>Favicon Επιλογές</title>
-  <link rel="icon" href="data:,"> <!-- default -->
   <meta charset="UTF-8">
   <title>Τα δικά μου χρήσιμα</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="shortcut icon" type="image/png" href="assets/unnamed.png">
+  <link rel="shortcut icon" type="image/png" href="assets/logo.png">
 
   <style>
   
@@ -46,15 +41,15 @@
   header h3 { margin:6px 0 0; font-size:13px; color:#bbb; font-weight:500; }
 
   /* -------------------------------------------------
-     4. TOPBAR (κουμπιά πάνω)
+     4. TOPBAR (κουμπιά πάνω)Ρυθμιση theme button
   ------------------------------------------------- */
   .topbar {
     display:flex; justify-content:center; align-items:center;
     gap:10px; margin:12px 0 18px; position:relative;
   }
-  .topbar-right {
-  position: relative;
-  right: -286px; /* Πάει αριστερά */
+ .topbar-right {
+  margin-left: 210px;
+  margin-right: -110px; /* Λίγο κενό από την άκρη */
 }
 
   /* -------------------------------------------------
@@ -79,9 +74,7 @@
 }
 
 
-
-
-  /* -------------------------------------------------
+/* -------------------------------------------------
      6. ΚΑΤΗΓΟΡΙΕΣ
   ------------------------------------------------- */
   #categories { display:flex; flex-direction:column; gap:18px; padding:0 6px; }
@@ -92,8 +85,8 @@
   .category.drag-over { outline:2px dashed #5aa9ff; outline-offset:4px; }
 
 
-
 /* ===== Στυλ για τίτλο κατηγορίας ===== */
+
 .category-title {
   display: flex;
   align-items: center;
@@ -102,12 +95,21 @@
   padding: 4px 2px;
 }
 
-/* Όνομα κατηγορίας αριστερά */
+/* Όνομα κατηγορίας αριστερά - ΜΕ ΤΟ ΝΕΟ ΧΡΩΜΑΤΙΣΤΟ ΦΩΝΤΟ */
 .category-title h2 {
   margin: 0;
   font-size: 18px;
   font-weight: 700;
   color: var(--text);
+  
+  /* ΝΕΟ ΣΤΥΛ ΠΑΡΟΜΟΙΟ ΜΕ ΤΟ ΡΟΛΟΙ */
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 8px 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Ενέργειες δεξιά */
@@ -245,7 +247,7 @@
 
 
  /* -------------------------------------------------
-   ΝΕΟ MENU ΠΑΝΩ ΣΤΙΣ ΚΑΡΤΕΣ
+  9. ΝΕΟ MENU ΠΑΝΩ ΣΤΙΣ ΚΑΡΤΕΣ
   ------------------------------------------------- */
 
 /* το <a> μένει χαμηλά ώστε να μην σκεπάζει το κουμπί */
@@ -382,10 +384,12 @@
   .icon-preview img{width:24px;height:24px;}
 
   /* Κουμπί παλέτας (αόρατο) */
-  #paletteBtn {
+#paletteBtn {
     position:fixed; top:50%; right:0; transform:translateY(-50%);
-    width:64px; height:64px; opacity:0; cursor:pointer; z-index:4500;
-  }
+    width:10px; height:30px; opacity:0; cursor:pointer; z-index:4500;
+    padding: 5px 5px; /* Μεγαλώνει την clickable περιοχή */
+    margin-right: 5px; /* Απομάκρυνση λίγο από την άκρη */
+}
 
   /* Παλέτα */
   .palette-row { display:flex; align-items:center; gap:12px; }
@@ -397,7 +401,7 @@
   [data-tooltip]{position:relative;}
   [data-tooltip]::after{
     content:attr(data-tooltip);
-    position:absolute; bottom:125%; left:50%; transform:translateX(-50%);
+    position:absolute; bottom:107%; left:50%; transform:translateX(-50%);
     background:#fff9c4; color:#0a58ca; border:1px solid rgba(10,88,202,.35);
     padding:4px 8px; border-radius:6px; white-space:nowrap; font-size:12px; font-weight:600;
     opacity:0; pointer-events:none; transition:opacity .2s; box-shadow:0 6px 18px rgba(0,0,0,.2);
@@ -417,7 +421,9 @@
   background: rgba(90, 169, 255, 0.08);
 }
 
-  <!-- Μπουρμπουλήθρες -->
+  /* -------------------------------------------------
+     14. BUBBLE EFE
+  ------------------------------------------------- */
 
 .bubbles {
   position: fixed;
@@ -494,7 +500,7 @@ header {
 }
 
 .logo-title img {
-  height: 60px; /* μέγεθος logo, το ρυθμίζεις όπως θες */
+  height: 70px; /* μέγεθος logo, το ρυθμίζεις όπως θες */
   border-radius: 12px; /* προαιρετικό, αν θες στρογγυλεμένες γωνίες */
 }
 
@@ -514,19 +520,6 @@ header {
   font-size: 13px;
   color: #bbb;
   font-weight: 500;
-}
-
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background: rgba(35,36,41,.96);
-  backdrop-filter: blur(6px);
-  font-size: 12px;
-  color: #a8b0bb;
-  padding: 8px 10px;
-  overflow: hidden;
 }
 
 footer {
@@ -580,12 +573,18 @@ footer {
 
 .typewriter {
   display: inline-block;
-  overflow: hidden;             /* κρύβει το υπόλοιπο κείμενο */
-  white-space: nowrap;          /* να μη σπάει γραμμή */
-  border-right: 2px solid var(--accent); /* σαν cursor */
-  width: 0;                     /* ξεκινάει μηδενικό */
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--accent);
+  width: 0;
   animation: typing 3s steps(25, end) forwards,
-             blinkCursor 0.7s step-end infinite;
+             hideCursor 0.1s 3s forwards;
+}
+
+@keyframes hideCursor {
+  to {
+    border-color: transparent;
+  }
 }
 
 @keyframes typing {
@@ -593,10 +592,8 @@ footer {
   to   { width: 100% }
 }
 
-@keyframes blinkCursor {
-  from, to { border-color: transparent }
-  50% { border-color: var(--accent) }
-}
+
+
 .card {
   opacity: 0;
   transform: translateY(10px);
@@ -684,7 +681,7 @@ footer {
 }
 
 /* -------------------------------------------------
-   ΡΟΛΟΙ - ΗΜΕΡΟΜΗΝΙΑ (ΔΕΞΙΑ ΣΕ ΙΔΙΑ ΓΡΑΜΜΗ)
+   12. ΡΟΛΟΙ - ΗΜΕΡΟΜΗΝΙΑ (ΔΕΞΙΑ ΣΕ ΙΔΙΑ ΓΡΑΜΜΗ)
 ------------------------------------------------- */
 header {
   display: flex;
@@ -709,17 +706,17 @@ header {
 }
 
 .datetime-widget .time {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--accent);
   margin-bottom: 2px;
   font-family: 'Courier New', monospace;
-  text-shadow: 0 0 10px rgba(244, 162, 97, 0.3);
+  text-shadow: 0 0 10px rgba(44, 162, 97, 0.3);
   animation: pulse 2s ease-in-out infinite;
 }
 
 .datetime-widget .date {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text);
   opacity: 0.9;
@@ -769,11 +766,91 @@ header {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* ===== ΧΡΩΜΑΤΙΣΤΟ ΦΩΝΤΟ ΜΟΝΟ ΓΙΑ ΤΟ ΟΝΟΜΑ ΚΑΤΗΓΟΡΙΑΣ ===== */
+.category-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 4px 2px;
+}
+
+/* Το όνομα κατηγορίας με το special φόντο */
+.category-title h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  
+  /* Νέο στυλ για το φόντο */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 8px 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  
+  /* Κείμενο */
+  text-shadow: 0 0 10px rgba(244, 162, 97, 0.3);
+}
+
+/* Ενέργειες δεξιά */
+.cat-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+/* Φαίνονται στο hover */
+.category-title:hover .cat-actions {
+  opacity: 1;
+}
+/* Διαφορετικά χρώματα για κάθε κατηγορία */
+.category:nth-child(1) .category-title h2 {
+  background: linear-gradient(135deg, rgba(244, 162, 97, 0.2), rgba(244, 162, 97, 0.1));
+  border: 1px solid rgba(244, 162, 97, 0.3);
+}
+
+.category:nth-child(2) .category-title h2 {
+  background: linear-gradient(135deg, rgba(42, 157, 244, 0.2), rgba(42, 157, 244, 0.1));
+  border: 1px solid rgba(42, 157, 244, 0.3);
+}
+
+.category:nth-child(3) .category-title h2 {
+  background: linear-gradient(135deg, rgba(161, 255, 10, 0.2), rgba(161, 255, 10, 0.1));
+  border: 1px solid rgba(161, 255, 10, 0.3);
+}
+
+.category:nth-child(4) .category-title h2 {
+  background: linear-gradient(135deg, rgba(255, 64, 129, 0.2), rgba(255, 64, 129, 0.1));
+  border: 1px solid rgba(255, 64, 129, 0.3);
+}
+
+.category:nth-child(5) .category-title h2 {
+  background: linear-gradient(135deg, rgba(159, 89, 243, 0.2), rgba(159, 89, 243, 0.1));
+  border: 1px solid rgba(159, 89, 243, 0.3);
+}
+
+
+
+
+
+
+    
+ 
 
 
   </style>
 </head>
 <body>
+ <!-- Audio element - κρυφό -->
+  <audio id="welcomeSound" preload="auto" style="display: none;">
+    <source src="assets/hello.mp3" type="audio/mpeg">
+    <source src="assets/hello.wav" type="audio/wav">
+  </audio>
+  
   <style>
     #paletteModal .actions-row {
       display: flex;
@@ -785,8 +862,379 @@ header {
       padding: 6px 12px;
       border-radius: 8px;
     }
-    </style>
-  <!-- Μπουρμπουλήθρες -->
+
+/* Βεβαιωθείτε ότι τα prompts εμφανίζονται σωστά */
+.palette-modal {
+  z-index: 4000;
+}
+
+/* Προσθέστε αυτό για καλύτερη αλληλεπίδραση */
+.datetime-widget {
+  z-index: 1;
+  position: relative;
+}
+
+
+
+/* Help Menu Styles - ΔΙΩΡΘΩΜΕΝΕΣ */
+.help-menu {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 1000;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    margin: 0 auto;
+}
+
+.help-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 999;
+}
+
+.help-menu h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.help-section {
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+.help-section h3 {
+    color: #2c3e50;
+    margin-bottom: 12px;
+    font-size: 1.1em;
+}
+
+.help-section p {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.help-section ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.help-section li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    color: #555;
+}
+
+.help-section li:before {
+    content: "•";
+    color: #3498db;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.close-help {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #7f8c8d;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-help:hover {
+    background: #f0f0f0;
+    color: #e74c3c;
+}
+
+/* ΒΟΗΘΕΙΑ ΚΟΥΜΠΙ - ΜΟΝΟ ΑΥΤΟ ΚΡΑΤΑ */
+.help-btn {
+    background: var(--accent) !important;
+}
+
+.help-btn:hover {
+    background: var(--accent-hover, #8e44ad) !important;
+    transform: translateY(-2px);
+}
+/* Help Button Theme Colors - 
+.help-btn.default { background: #9b59b6 !important; }
+.help-btn.dark { background: #00bcd4 !important; }
+.help-btn.light { background: #2980b9 !important; }
+.help-btn.green { background: #2ecc71 !important; }
+.help-btn.brown { background: #bd5b6b !important; }
+.help-btn.purple { background: #9b59b6 !important; }
+.help-btn.blue { background: #3498db !important; }
+.help-btn.orange { background: #d69358 !important; }
+.help-btn.pink { background: #b5678d !important; }
+
+.help-btn.default:hover { background: #8e44ad !important; }
+.help-btn.dark:hover { background: #00bcd4 !important; }
+.help-btn.light:hover { background: #2980b9 !important; }
+.help-btn.green:hover { background: #b4e072 !important; }
+.help-btn.brown:hover { background: #A0522D !important; }
+.help-btn.purple:hover { background: #8e44ad !important; }
+.help-btn.blue:hover { background: #2980b9 !important; }
+.help-btn.orange:hover { background: #d35400 !important; }
+.help-btn.pink:hover { background: #fd79a8 !important; }ΟΛΑ ΤΑ THEMES */
+
+/* Responsive βελτιώσεις help */
+@media (max-width: 768px) {
+    .help-menu {
+        width: 95%;
+        padding: 20px;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .help-menu {
+        width: 98%;
+        padding: 15px;
+        margin: 5px;
+    }
+	
+	/* Zuccaradio Button Styles */
+.zuccaradio-btn {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24) !important;
+    color: white !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
+    padding: 10px 16px !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3) !important;
+}
+
+.zuccaradio-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(238, 90, 36, 0.4) !important;
+    background: linear-gradient(135deg, #ff7979, #ff3838) !important;
+}
+
+.zuccaradio-btn.playing {
+    background: linear-gradient(135deg, #00b894, #00a085) !important;
+    box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3) !important;
+}
+
+.zuccaradio-btn.playing:hover {
+    background: linear-gradient(135deg, #00d4a7, #00b894) !important;
+    box-shadow: 0 6px 20px rgba(0, 184, 148, 0.4) !important;
+}
+
+/* Zuccaradio Button Styles */
+.zuccaradio-btn {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24) !important;
+    color: white !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
+    padding: 10px 16px !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3) !important;
+}
+
+.zuccaradio-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(238, 90, 36, 0.4) !important;
+    background: linear-gradient(135deg, #ff7979, #ff3838) !important;
+}
+
+.zuccaradio-btn.playing {
+    background: linear-gradient(135deg, #00b894, #00a085) !important;
+    box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3) !important;
+}
+
+.zuccaradio-btn.playing:hover {
+    background: linear-gradient(135deg, #00d4a7, #00b894) !important;
+    box-shadow: 0 6px 20px rgba(0, 184, 148, 0.4) !important;
+}
+
+/* ===== Volume Control ===== */
+.volume-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 360px; /* περίπου εκεί που αρχίζει το theme menu */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.volume-control {
+  width: 90px;
+  accent-color: var(--accent);
+}
+
+.volume-control::-webkit-slider-runnable-track {
+    background: var(--card);
+    border-radius: 10px;
+    height: 6px;
+    border: 1px solid var(--border);
+}
+
+.volume-control::-webkit-slider-thumb {
+    appearance: none;
+    background: var(--accent);
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.volume-control::-moz-range-track {
+    background: var(--card);
+    border-radius: 10px;
+    height: 6px;
+    border: 1px solid var(--border);
+}
+
+.volume-control::-moz-range-thumb {
+    background: var(--accent);
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+#volumeTooltip {
+  position: absolute;
+  bottom: 125%; /* σταθερό, δεν αλλάζει layout */
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.volume-icon {
+    font-size: 16px;
+    margin-right: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    z-index: 100; /* Προσθήκη αυτού */
+}
+
+.volume-icon:hover {
+    transform: scale(1.1);
+}
+
+/* === Ενοποίηση κουμπιών & volume === */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* <-- αφήνει τα αντικείμενα αριστερά */
+}
+
+.topbar button,
+.zuccaradio-btn,
+.help-btn {
+  padding: 8px 14px !important;
+  font-size: 14px !important;
+  height: 36px !important;
+  border-radius: 10px !important;
+  background: var(--accent) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-weight: 700 !important;
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-shrink: 0;
+  position: relative;
+  left:320px; /* <-- άλλαζε εδώ μέχρι να "κάτσει" σωστά */
+}
+
+.volume-control {
+  width: 90px;
+  accent-color: var(--accent);
+  transform: translateY(1px);
+}
+
+.volume-icon {
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.2s ease;
+}
+
+.volume-icon:hover {
+  transform: scale(1.1);
+}
+
+/* PERMANENT BUTTON HEIGHT FIX */
+.topbar button,
+.topbar .zuccaradio-btn,
+.topbar .help-btn {
+    height: 38px !important;
+    min-height: 38px !important;
+    padding: 8px 14px !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+}
+
+.topbar #themeSelect {
+    height: 38px !important;
+    min-height: 38px !important;
+    padding: 0 10px !important;
+    line-height: 38px !important;
+    box-sizing: border-box !important;
+}
+
+.volume-container {
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.category, .card {
+  transition: transform 0.15s ease;
+}
+
+
+
+
+</style>
+  <!-- Bubbles  -->
 
 <div class="bubbles">
   <span></span><span></span><span></span><span></span><span></span>
@@ -798,25 +1246,24 @@ header {
 
 <header>
 
+
   <div class="logo-title">
-    <img src="assets/unnamed.png" alt="Logo">
+    <img src="assets/logo.png" alt="Logo">
     <div class="titles">
       <h1 class="typewriter">Τα δικά μου χρήσιμα</h1>
-      <h2>Φαρμακείο Γκίνης Κ. Πέτρος, Πολύγωνο.</h2>
+      <h2>Συστεγασμένα Φαρμακεία Νεοκ. & Νικ. Μενεξιάδης & ΣΙΑ Ο.Ε.</h2>
       <h3>Χρήσιμα εργαλεία και σύνδεσμοι</h3>
     </div>
   </div>
   
-  <!-- Ρολόι - Ημερομηνία -->
-  <div class="datetime-widget">
+<!-- Ρολόι - Ημερομηνία (ΕΞΩ από το logo-title) -->
+<div class="datetime-widget" id="titleWidget" data-tooltip="Τι ώρα είναι ξέρεις??">
     <div class="time" id="currentTime">00:00:00</div>
     <div class="date" id="currentDate">Παρασκευή, 1 Ιανουαρίου</div>
-  </div>
-  
-  
-  
-</header>
+</div>
 
+
+</header>
 
 <div class="topbar">
   <!-- Κουμπιά κεντρικά -->
@@ -824,22 +1271,26 @@ header {
   <button id="undoBtnTop" class="gray" disabled>↩ Αναίρεση</button>
   <button id="backupBtn">Backup</button>
   <button id="restoreBtn">Restore</button>
-
+  
+  <!-- ΝΕΟ ΚΟΥΜΠΙ ZUCCARADIO -->
+  <button id="zuccaradioBtn" class="zuccaradio-btn" data-tooltip="Ακούστε Zuccaradio">🎵 Zuccaradio</button>
+  
+  <button class="nav-btn help-btn default" id="helpBtn" data-tooltip="Διάβασέ με">💡 Βοήθεια</button>
 
   <!-- Δεξιά -->
-<div class="topbar-right">
-  <select id="themeSelect">
-    <option value="dark">Dark 🌙</option>
-    <option value="light">Light ☀️</option>
-    <option value="green">Green 🌵</option>
-    <option value="brown">Brown ☕</option>
-    <option value="purple">Purple 🪀</option>
-    <option value="blue">Blue 🌊</option>
-    <option value="orange">Orange 🍊</option>
-    <option value="pink">Pink 🌸</option>
-  </select>
-</div>
+  <div class="topbar-right">
+    <select id="themeSelect">
+      <option value="dark">Dark 🌙</option>
+      <option value="light">Light ☀️</option>
+      <option value="green">Green 🌵</option>
+      <option value="brown">Brown ☕</option>
+      <option value="purple">Purple 🪀</option>
+      <option value="blue">Blue 🌊</option>
+      <option value="orange">Orange 🍊</option>
+      <option value="pink">Pink 🌸</option>
+    </select>
   </div>
+</div>
 
 
 
@@ -933,7 +1384,7 @@ header {
 </div>
 
 <div class="theme-toggle-wrapper">
-  <span class="version">ver. 2.3.9b</span>
+  <span class="version">ver. 3.6.0p</span>
 </div>
 
 
@@ -1000,7 +1451,52 @@ header {
 <!-- ===== ΚΡΥΦΟ ΚΟΥΜΠΙ ΓΙΑ ΠΑΛΕΤΑ ===== -->
 <div id="paletteBtn" data-tooltip="Ρυθμίσεις χρωμάτων"></div>
 
-
+<!-- Help Menu -->
+<div class="help-overlay" id="helpOverlay"></div>
+<div class="help-menu" id="helpMenu">
+    <button class="close-help" id="closeHelp">&times;</button>
+    
+    <h2>📚 Οδηγίες Χρήσης</h2>
+    
+    <div class="help-section">
+        <h3>🎴 Πώς να χρησιμοποιήσετε τα shortcuts</h3>
+        <p>Για εύκολο χειρισμό των αγαπημένων σας sites</p>
+        <ul>
+            <li>Χρησιμοποιήστε τα κουμπιά <strong>"Επόμενη"</strong> και <strong>"Προηγούμενη"</strong> για πλοήγηση</li>
+            
+        </ul>
+    </div>
+    
+    <div class="help-section">
+        <h3>💡 Συμβουλές Μάθησης</h3>
+        <p>Ακολουθήστε αυτές τις συμβουλές για καλύτερα αποτελέσματα:</p>
+        <ul>
+            <li>Επανάληψη είναι το κλειδί - χρησιμοποιήστε την εφαρμογή καθημερινά</li>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="help-section">
+        <h3>🎯 Πληροφορίες Εφαρμογής</h3>
+        <p>Αυτή η εφαρμογή σας βοηθά να:</p>
+        <ul>
+            
+            <li>Νά βρίσκετε γρήγορα .........τον δρόμο σας!!</li>
+        </ul>
+    </div>
+    
+    <div class="help-section">
+        <h3>⌨️ Συντομεύσεις Πληκτρολογίου</h3>
+        <ul>
+            <li><strong>ESC:</strong> Κλείσιμο help menu</li>
+            <li><strong>Βοήθεια:</strong> Κουμπί για άνοιγμα αυτού του παραθύρου</li>
+        </ul>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px; color: #7f8c8d; font-style: italic;">
+        <p>Καλή επιτυχία στην εκμάθηση! </p>
+    </div>
+</div>
 
 
 
@@ -1019,6 +1515,8 @@ let historyStack = []; // Ιστορικό για undo
 let themeDefault = {
   bg1:"#1f1f1f", bg2:"#232429", card:"#2b2d33", text:"#eaeef5", accent:"#2f80ed"
 };
+
+
 
 /* ===============================
    📌 Default Favicon Generator
@@ -1075,15 +1573,39 @@ function svgIcon(kind, active=false){
 function saveData(){
   localStorage.setItem("categories", JSON.stringify(categories));
   localStorage.setItem("catOrder", JSON.stringify(catOrder));
+  localStorage.setItem("categoryColors", JSON.stringify(categoryColors)); // ΝΕΟ
 }
 function loadData(){
   categories = JSON.parse(localStorage.getItem("categories") || "{}");
   catOrder = JSON.parse(localStorage.getItem("catOrder") || "[]");
+  categoryColors = JSON.parse(localStorage.getItem("categoryColors") || "{}"); // ΝΕΟ
 }
 
 /* ===============================
-   📌 Θέμα / Χρώματα
+   📌 ΤΥΧΑΙΑ ΧΡΩΜΑΤΑ ΓΙΑ ΚΑΤΗΓΟΡΙΕΣ
    =============================== */
+function getRandomCategoryColor() {
+  // Λίστα με όμορφα gradient χρώματα
+  const colorPairs = [
+    { bg: 'rgba(244, 162, 97, 0.2)', border: 'rgba(244, 162, 97, 0.3)' },      // Orange
+    { bg: 'rgba(42, 157, 244, 0.2)', border: 'rgba(42, 157, 244, 0.3)' },      // Blue
+    { bg: 'rgba(161, 255, 10, 0.2)', border: 'rgba(161, 255, 10, 0.3)' },      // Green
+    { bg: 'rgba(255, 64, 129, 0.2)', border: 'rgba(255, 64, 129, 0.3)' },      // Pink
+    { bg: 'rgba(159, 89, 243, 0.2)', border: 'rgba(159, 89, 243, 0.3)' },      // Purple
+    { bg: 'rgba(255, 215, 0, 0.2)', border: 'rgba(255, 215, 0, 0.3)' },        // Yellow
+    { bg: 'rgba(0, 230, 118, 0.2)', border: 'rgba(0, 230, 118, 0.3)' },        // Emerald
+    { bg: 'rgba(156, 39, 176, 0.2)', border: 'rgba(156, 39, 176, 0.3)' },      // Deep Purple
+    { bg: 'rgba(33, 150, 243, 0.2)', border: 'rgba(33, 150, 243, 0.3)' },      // Light Blue
+    { bg: 'rgba(229, 57, 53, 0.2)', border: 'rgba(229, 57, 53, 0.3)' },        // Red
+    { bg: 'rgba(0, 150, 136, 0.2)', border: 'rgba(0, 150, 136, 0.3)' },        // Teal
+    { bg: 'rgba(121, 85, 72, 0.2)', border: 'rgba(121, 85, 72, 0.3)' }         // Brown
+  ];
+  
+  // Επιλογή τυχαίου χρώματος
+  const randomIndex = Math.floor(Math.random() * colorPairs.length);
+  return colorPairs[randomIndex];
+}
+
 
 /* ===============================
    📌 Undo / Ιστορικό
@@ -1130,7 +1652,10 @@ const originalRender = render;
 render = function() {
   originalRender();
   animateCards();
+  enableCategoryDragDrop();
+  enableLinkDragDrop();
 };
+
 
 
 /* ===============================
@@ -1148,7 +1673,31 @@ function normalizeUrl(u){
 function dedupeAdd(cat, linkObj){
   const url = linkObj.url;
   if(!(categories[cat])) categories[cat] = [];
-  if(categories[cat].some(L => (L.url||"").toLowerCase() === url.toLowerCase())) return false;
+  
+  // Κανονικοποίηση URL για καλύτερο έλεγχο
+  const normalizeUrlForComparison = (url) => {
+    try {
+      const urlObj = new URL(url);
+      return urlObj.hostname + urlObj.pathname.replace(/\/$/, '');
+    } catch {
+      return url.toLowerCase().replace(/\/$/, '');
+    }
+  };
+  
+  const normalizedNewUrl = normalizeUrlForComparison(url);
+  
+  // Έλεγχος για διπλότυπο
+  const existingLink = categories[cat].find(L => {
+    const existingUrl = normalizeUrlForComparison(L.url || "");
+    return existingUrl === normalizedNewUrl;
+  });
+  
+  if (existingLink) {
+    const existingName = existingLink.name || "Χωρίς όνομα";
+    alert(`⚠️ Αυτή η συντόμευση ήδη υπάρχει!\n\nURL: ${url}\nΚατηγορία: ${cat}\nΥπάρχον όνομα: ${existingName}`);
+    return false;
+  }
+  
   categories[cat].push(linkObj);
   return true;
 }
@@ -1183,7 +1732,7 @@ function render(){
   const wrap = document.getElementById("categories");
   wrap.innerHTML = "";
 
-  catOrder.forEach(cat=>{
+  catOrder.forEach(cat => {
     const sec = document.createElement("div");
     sec.className = "category";
     sec.draggable = true;
@@ -1196,6 +1745,19 @@ function render(){
     // όνομα αριστερά
     const h2 = document.createElement("h2");
     h2.textContent = cat;
+    
+    // ΝΕΟ: Εφαρμογή χρώματος για την κατηγορία
+    if (!categoryColors[cat]) {
+      // Αν δεν υπάρχει χρώμα, δημιούργησε ένα νέο
+      categoryColors[cat] = getRandomCategoryColor();
+      saveData(); // Αποθήκευση του νέου χρώματος
+    }
+    
+    // ΝΕΟ: Εφαρμογή του χρώματος στο όνομα
+    const color = categoryColors[cat];
+    h2.style.background = `linear-gradient(135deg, ${color.bg}, ${color.bg.replace('0.2', '0.1')})`;
+    h2.style.border = `1px solid ${color.border}`;
+    
     title.appendChild(h2);
 
     // actions δεξιά
@@ -1295,12 +1857,15 @@ function render(){
   <button class="pin">📌</button>
 </div>
       `;
+	  
 
       const a = document.createElement("a");
       a.href = l.url || "#";
       a.target = "_blank";
       a.rel = "noopener";
       a.draggable = false;
+      a.addEventListener("dragstart", e => e.preventDefault());
+
 
       const img = document.createElement("img");
       img.className = "favicon";
@@ -1379,7 +1944,11 @@ function render(){
 
     wrap.appendChild(sec);
   });
-}/* ===============================
+}
+
+
+
+/* ===============================
    📌 Συνάρτηση για να βρίσκουμε τον τίτλο σελίδας
    =============================== */
 async function fetchTitle(url) {
@@ -1801,6 +2370,8 @@ function restoreAutoBackup(index) {
   }
 }
 
+
+
 /* ===============================
    📌 Έλεγχος κατά την εκκίνηση
    =============================== */
@@ -1818,10 +2389,6 @@ function checkAndCompressExistingImages() {
     });
   });
 }
-
-
-
-
 
 /* ===============================
    📌 Backup & Restore
@@ -2007,6 +2574,29 @@ function getTheme(){
   };
 }
 
+function changeTheme(theme) {
+    const root = document.documentElement;
+    const helpBtn = document.getElementById('helpBtn');
+    
+    // Remove existing theme classes
+    root.className = '';
+    
+    // Apply new theme
+    if (theme !== 'default') {
+        root.classList.add(theme + '-theme');
+    }
+    
+    // 🔥 ΔΙΟΡΘΩΜΕΝΟ: Χρήση CSS classes αντί για inline style
+    if (helpBtn) {
+        // Αφαίρεσε όλες τις theme classes
+        helpBtn.classList.remove('default', 'dark', 'light', 'green', 'brown', 'purple', 'blue', 'orange', 'pink');
+        // Πρόσθεσε τη νέα theme class
+        helpBtn.classList.add(theme);
+    }
+    
+    // Save theme preference
+    localStorage.setItem('selectedTheme', theme);
+}
 // αποθήκευση theme (όνομα ή custom)
 function saveTheme(nameOrObj){ 
   if(typeof nameOrObj === "string"){
@@ -2031,11 +2621,17 @@ function loadTheme(){
     applyTheme(t);
   }
 
+  // 🔥 ΝΕΟ: Ενημέρωση help button
+  const helpBtn = document.getElementById('helpBtn');
+  if (helpBtn) {
+    helpBtn.classList.remove('default', 'dark', 'light', 'green', 'brown', 'purple', 'blue', 'orange', 'pink');
+    helpBtn.classList.add(name === 'custom' ? 'default' : name);
+  }
+
   // ενημέρωση dropdown
   const sel = document.getElementById("themeSelect");
   if(sel){
     if(name === "custom"){
-      // Αν δεν υπάρχει επιλογή custom στο select → πρόσθεσέ την
       if(![...sel.options].some(o => o.value === "custom")){
         sel.add(new Option("Custom", "custom"));
       }
@@ -2052,10 +2648,9 @@ document.getElementById("themeSelect").addEventListener("change", e => {
   if(themes[chosen]){
     applyTheme(themes[chosen]);
     saveTheme(chosen);
+    changeTheme(chosen); // 🔥 ΠΡΟΣΘΗΚΗ ΑΥΤΗΣ ΤΗΣ ΓΡΑΜΜΗΣ
   }
 });
-
-
 // κλήση στην εκκίνηση
 loadTheme();
 
@@ -2166,6 +2761,86 @@ document.getElementById("autoBackupBtn").addEventListener("click", showAutoBacku
 // Δημιουργία αρχικού backup κατά την εκκίνηση
 setTimeout(createAutoBackup, 1000);
 
+
+
+
+
+/* ===============================
+   📌 ΗΧΗΤΙΚΟ WELCOME ΜΕ ΠΡΩΤΗ ΑΛΛΗΛΕΠΙΔΡΑΣΗ
+   =============================== */
+
+let welcomePlayed = false;
+
+function playWelcomeOnInteraction() {
+  if (welcomePlayed) return;
+  
+  const welcomeSound = document.getElementById('welcomeSound');
+  if (welcomeSound) {
+    // Ένταση 80% - καλό compromise
+    welcomeSound.volume = 0.8;
+    
+    // Προσπάθεια αναπαραγωγής με fallback
+    const playPromise = welcomeSound.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        welcomePlayed = true;
+        console.log('🔊 Ηχητικό welcome played');
+      }).catch(error => {
+        console.log('Αυτόματη αναπαραγωγή απέτυχε, απαιτείται χειροκίνητο κλικ');
+      });
+    }
+  }
+}
+
+
+/* ===============================
+   📌 ΕΠΕΞΕΡΓΑΣΙΑ ΥΠΟΤΙΤΛΟΥ ΜΕ DOUBLE-CLICK
+   =============================== */
+
+let currentSubtitle = "Συστεγασμένα Φαρμακεία Νεοκ. & Νικ. Μενεξιάδης & ΣΙΑ Ο.Ε.";
+
+function loadSubtitle() {
+  const savedSubtitle = localStorage.getItem("customSubtitle");
+  if (savedSubtitle) {
+    currentSubtitle = savedSubtitle;
+    updateSubtitleDisplay();
+  }
+}
+
+function saveSubtitle(subtitle) {
+  currentSubtitle = subtitle;
+  localStorage.setItem("customSubtitle", subtitle);
+  updateSubtitleDisplay();
+}
+
+function updateSubtitleDisplay() {
+  const subtitleElement = document.querySelector('.titles h2');
+  if (subtitleElement) {
+    subtitleElement.textContent = currentSubtitle;
+  }
+}
+
+// Προσθήκη double-click event
+document.addEventListener('DOMContentLoaded', function() {
+  const titleWidget = document.getElementById('titleWidget');
+  
+  if (titleWidget) {
+    titleWidget.style.cursor = 'pointer';
+    
+    titleWidget.addEventListener('dblclick', function(e) {
+    e.stopPropagation(); // Σταματά την propagation
+    e.preventDefault(); // Αποφεύγει τυχόν default behavior
+      const newSubtitle = prompt('Αλλαγή υπότιτλου:', currentSubtitle);
+      if (newSubtitle && newSubtitle.trim() !== '') {
+        saveSubtitle(newSubtitle.trim());
+      }
+    });
+  }
+  
+  // Φόρτωση αποθηκευμένου υπότιτλου
+  loadSubtitle();
+});
 loadData(); 
 if(catOrder.length===0){
   categories={"Εισαγωγή":[]};
@@ -2174,7 +2849,52 @@ if(catOrder.length===0){
 }
 render(); updateUndoBtn();
 
+// Help Menu Functionality
+function initHelpMenu() {
+    const helpMenu = document.getElementById('helpMenu');
+    const helpOverlay = document.getElementById('helpOverlay');
+    const closeHelp = document.getElementById('closeHelp');
+    
+    // Create help button if it doesn't exist
+if (!document.getElementById('helpBtn')) {
+    const helpBtn = document.createElement('button');
+    helpBtn.id = 'helpBtn';
+    helpBtn.className = 'nav-btn help-btn default';
+    helpBtn.innerHTML = '❓ Βοήθεια';
+    document.querySelector('.nav-buttons').appendChild(helpBtn);
+    
+    helpBtn.addEventListener('click', showHelpMenu);
+} else {
+    document.getElementById('helpBtn').addEventListener('click', showHelpMenu);
+}
+    
+    // Help menu functions
+    function showHelpMenu() {
+        helpMenu.style.display = 'block';
+        helpOverlay.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+    
+    function hideHelpMenu() {
+        helpMenu.style.display = 'none';
+        helpOverlay.style.display = 'none';
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+    
+    // Event listeners
+    closeHelp.addEventListener('click', hideHelpMenu);
+    helpOverlay.addEventListener('click', hideHelpMenu);
+    
+    // Close with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            hideHelpMenu();
+        }
+    });
+}
 
+// Initialize help menu when page loads
+document.addEventListener('DOMContentLoaded', initHelpMenu);
 
 
 
@@ -2199,6 +2919,8 @@ document.querySelectorAll("input[type=color]").forEach(input => {
     }
   }
 });
+
+
 
 
 // update palette swatches initial
@@ -2245,6 +2967,415 @@ function updateDateTime() {
 // Εκκίνηση ρολογιού
 updateDateTime();
 setInterval(updateDateTime, 1000);
+
+/* ===============================
+   📌 ZUCCARADIO PLAYER - ΕΝΗΜΕΡΩΜΕΝΟ (ΕΝΙΑΙΟ ΜΕ VOLUME + INTERFACE)
+   =============================== */
+
+let radioPlayer = null;
+let isRadioPlaying = false;
+let radioAudio = null;
+let radioInterface = null;
+
+function initRadioPlayer() {
+    // Δημιουργία radio interface
+    createRadioInterface();  // Απλά ΚΑΛΕΣΕ τη function
+    
+    // Σύνδεση events
+    document.getElementById("zuccaradioBtn").addEventListener("click", toggleRadioInterface);
+    
+    // Volume control integration
+    const volumeControl = document.querySelector(".volume-control");
+    if (volumeControl) {
+        volumeControl.addEventListener("input", (e) => {
+            if (radioAudio) {
+                radioAudio.volume = e.target.value;
+                updateRadioInfo(`Ένταση: ${Math.round(radioAudio.volume * 100)}%`);
+            }
+        });
+    }
+}
+
+function createRadioInterface() {
+    radioInterface = document.createElement('div');
+    radioInterface.className = 'radio-player';
+    radioInterface.style.cssText = `
+        position: fixed;
+        top: 10px;  /* Λίγο κάτω από το header */
+        left: 10px;  /* Αριστερά */
+        transform: none;  /* Αφαίρεσε το transform */
+        background: var(--card);
+        border: 2px solid var(--accent);
+        border-radius: 12px;
+        padding: 15px;
+        z-index: 10000;
+        display: none;
+        min-width: 250px;  /* Πιο μικρό */
+        max-width: 250px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        color: var(--text);
+    `;
+    
+    radioInterface.innerHTML = `
+        <button class="close-radio" style="
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        ">&times;</button>
+        
+        <h3 style="margin: 0 0 12px 0; text-align: center; color: var(--accent); font-size: 16px;">🎵 Zuccaradio</h3>
+        
+        <div class="radio-controls" style="
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        ">
+            <button id="playRadio" style="
+                padding: 8px 12px;
+                background: var(--accent);
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                flex: 1;
+            ">▶</button>
+            
+            <button id="stopRadio" style="
+                padding: 8px 12px;
+                background: #e74c3c;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                flex: 1;
+            ">⏹</button>
+        </div>
+        
+        <div class="volume-controls" style="
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        ">
+            <span style="font-size: 14px;">🔊</span>
+            <input type="range" id="radioVolume" min="0" max="1" step="0.1" value="0.7" style="
+                flex: 1;
+                accent-color: var(--accent);
+                height: 6px;
+            ">
+        </div>
+        
+        <div class="radio-info" style="
+            text-align: center;
+            font-size: 12px;
+            color: var(--text);
+            opacity: 0.8;
+            line-height: 1.3;
+        ">Ακούστε Zuccaradio</div>
+    `;
+    
+    document.body.appendChild(radioInterface);
+    
+    // Event listeners
+    radioInterface.querySelector('#playRadio').addEventListener('click', toggleRadioPlay);
+    radioInterface.querySelector('#stopRadio').addEventListener('click', stopRadio);
+    radioInterface.querySelector('#radioVolume').addEventListener('input', (e) => {
+        if (radioAudio) {
+            radioAudio.volume = e.target.value;
+            updateRadioInfo(`Ένταση: ${Math.round(radioAudio.volume * 100)}%`);
+        }
+    });
+    radioInterface.querySelector('.close-radio').addEventListener('click', closeRadioInterface);
+    
+    // Βελτίωση hover effects
+    const closeBtn = radioInterface.querySelector('.close-radio');
+    closeBtn.addEventListener('mouseenter', function() {
+        this.style.background = 'rgba(255,255,255,0.1)';
+    });
+    closeBtn.addEventListener('mouseleave', function() {
+        this.style.background = 'none';
+    });
+}
+
+function toggleRadioInterface() {
+    if (radioInterface && radioInterface.style.display === 'block') {
+        closeRadioInterface();
+    } else {
+        openRadioInterface();
+    }
+}
+
+function openRadioInterface() {
+    if (radioInterface) {
+        radioInterface.style.display = 'block';
+        // Update main button
+        document.getElementById("zuccaradioBtn").classList.add("active");
+    }
+}
+
+function closeRadioInterface() {
+    if (radioInterface) {
+        radioInterface.style.display = 'none';
+        document.getElementById("zuccaradioBtn").classList.remove("active");
+    }
+}
+
+function toggleRadioPlay() {
+    if (!isRadioPlaying) {
+        playRadio();
+    } else {
+        pauseRadio();
+    }
+}
+
+function playRadio() {
+    if (!radioAudio) {
+        radioAudio = new Audio('https://stream.zuccaradio.com/stream');
+        radioAudio.volume = document.querySelector('#radioVolume').value;
+        
+        radioAudio.addEventListener('loadstart', function() {
+            updateRadioInfo('Φόρτωση ραδιοφώνου...');
+        });
+        
+        radioAudio.addEventListener('canplay', function() {
+            updateRadioInfo('Αναπαραγωγή Zuccaradio...');
+        });
+        
+        radioAudio.addEventListener('error', function() {
+            updateRadioInfo('Σφάλμα φόρτωσης ραδιοφώνου');
+            resetRadioState();
+        });
+    }
+    
+    radioAudio.play().then(() => {
+        isRadioPlaying = true;
+        updatePlayButton();
+        updateRadioInfo('Αναπαραγωγή Zuccaradio...');
+        document.getElementById("zuccaradioBtn").classList.add("playing");
+        document.getElementById("zuccaradioBtn").textContent = "⏸ Zuccaradio";
+    }).catch(error => {
+        console.error('Radio play error:', error);
+        updateRadioInfo('Σφάλμα: Δεν μπορεί να ακουστεί το ραδιόφωνο');
+        resetRadioState();
+    });
+}
+
+function pauseRadio() {
+    if (radioAudio && isRadioPlaying) {
+        radioAudio.pause();
+        isRadioPlaying = false;
+        updatePlayButton();
+        updateRadioInfo('Παύση Zuccaradio');
+        document.getElementById("zuccaradioBtn").classList.remove("playing");
+        document.getElementById("zuccaradioBtn").textContent = "🎵 Zuccaradio";
+    }
+}
+
+function stopRadio() {
+    if (radioAudio) {
+        radioAudio.pause();
+        radioAudio.currentTime = 0;
+        resetRadioState();
+        updateRadioInfo('Ραδιόφωνο σταματημένο');
+    }
+}
+
+function resetRadioState() {
+    isRadioPlaying = false;
+    updatePlayButton();
+    document.getElementById("zuccaradioBtn").classList.remove("playing");
+    document.getElementById("zuccaradioBtn").textContent = "🎵 Zuccaradio";
+}
+
+function updatePlayButton() {
+    const playBtn = document.getElementById('playRadio');
+    if (playBtn) {
+        playBtn.textContent = isRadioPlaying ? '⏸' : '▶';
+    }
+}
+
+function updateRadioInfo(message) {
+    const infoElement = radioInterface.querySelector('.radio-info');
+    if (infoElement) {
+        infoElement.textContent = message;
+    }
+}
+
+// Κλείσιμο με ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && radioInterface && radioInterface.style.display === 'block') {
+        closeRadioInterface();
+    }
+});
+
+// Προσθήκη CSS styles
+const radioStyles = `
+.radio-player {
+    backdrop-filter: blur(10px);
+    background: rgba(var(--card-rgb), 0.9) !important;
+}
+
+.zuccaradio-btn.active {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24) !important;
+    transform: scale(1.05);
+}
+
+.zuccaradio-btn.playing {
+    background: linear-gradient(135deg, #00b894, #00a085) !important;
+    animation: pulse 1.5s infinite;
+}
+`;
+
+// Εισαγωγή styles
+const styleSheet = document.createElement('style');
+styleSheet.textContent = radioStyles;
+document.head.appendChild(styleSheet);
+
+// Αρχικοποίηση όταν φορτωθεί η σελίδα
+document.addEventListener('DOMContentLoaded', initRadioPlayer);
+setTimeout(fixButtonHeights, 1000);
+
+/* ===============================
+   📌 Drag & Drop Κατηγοριών (ΕΓΓΥΗΜΕΝΗ ΛΥΣΗ)
+   =============================== */
+function enableCategoryDragDrop() {
+  const wrap = document.getElementById("categories");
+  if (!wrap) return;
+
+  // COMPLETE PREVENTION OF DEFAULT BROWSER BEHAVIOR
+  document.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'none';
+  }, false);
+  
+  document.addEventListener('drop', function(e) {
+    e.preventDefault();
+    return false;
+  }, false);
+
+  // Our custom drag & drop implementation
+  let lastCatDragTime = 0;
+  let rafId = null;
+
+  document.querySelectorAll(".category").forEach(catEl => {
+    catEl.addEventListener("dragstart", e => {
+      e.dataTransfer.setData("text/plain", catEl.dataset.cat || "");
+      e.dataTransfer.effectAllowed = 'move';
+      catEl.classList.add("dragging");
+    });
+    
+    catEl.addEventListener("dragend", () => {
+      catEl.classList.remove("dragging");
+    });
+  });
+
+  wrap.addEventListener("dragover", e => {
+    e.preventDefault();
+    const now = Date.now();
+    if (now - lastCatDragTime < 60) return;
+    lastCatDragTime = now;
+
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => {
+      const dragging = document.querySelector(".category.dragging");
+      if (!dragging) return;
+      const others = [...wrap.querySelectorAll(".category:not(.dragging)")];
+      const after = others.find(el => {
+        const rect = el.getBoundingClientRect();
+        return e.clientY <= rect.top + rect.height / 2;
+      });
+      if (after) wrap.insertBefore(dragging, after);
+      else wrap.appendChild(dragging);
+    });
+  });
+
+  wrap.addEventListener("drop", (e) => {
+    e.preventDefault();
+    catOrder = [...document.querySelectorAll(".category")].map(c => c.dataset.cat);
+    saveData();
+    render();
+  });
+}
+
+/* ===============================
+   📌 Drag & Drop Links (fix + throttle)
+   =============================== */
+function enableLinkDragDrop() {
+  // attach per-card handlers (setDragImage εδώ)
+  document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("dragstart", e => {
+      e.dataTransfer.setData("text/plain", JSON.stringify({
+        cat: card.dataset.cat,
+        idx: card.dataset.idx
+      }));
+      card.classList.add("dragging");
+      e.dataTransfer.effectAllowed = "move";
+      try { e.dataTransfer.setDragImage(card, 12, 12); } catch (err) { /* ignore */ }
+    });
+    card.addEventListener("dragend", () => {
+      card.classList.remove("dragging");
+    });
+  });
+
+  // per-grid throttled dragover (separate throttle per grid)
+  document.querySelectorAll(".grid").forEach(grid => {
+    let lastGridDrag = 0;
+    grid.addEventListener("dragover", e => {
+      e.preventDefault();
+      const now = Date.now();
+      if (now - lastGridDrag < 60) return; // ~60ms
+      lastGridDrag = now;
+
+      const dragging = document.querySelector(".card.dragging");
+      if (!dragging) return;
+      const others = [...grid.querySelectorAll(".card:not(.dragging)")];
+      const after = others.find(el => {
+        const rect = el.getBoundingClientRect();
+        return e.clientY <= rect.top + rect.height / 2;
+      });
+      if (after) grid.insertBefore(dragging, after);
+      else grid.appendChild(dragging);
+    });
+
+    grid.addEventListener("drop", e => {
+      e.preventDefault();
+      // parse data, move item in categories
+      let dataStr = e.dataTransfer.getData("text/plain");
+      if (!dataStr) return;
+      let data;
+      try { data = JSON.parse(dataStr); } catch { return; }
+      const fromCat = data.cat;
+      const fromIdx = parseInt(data.idx);
+      const toCat = grid.dataset.cat;
+      if (!categories[fromCat]) return;
+      const item = categories[fromCat].splice(fromIdx, 1)[0];
+      if (!item) return;
+      if (!categories[toCat]) categories[toCat] = [];
+      // new index equals DOM position
+      const domIndex = [...grid.querySelectorAll(".card")].indexOf(grid.querySelector(".card.dragging"));
+      const newIdx = domIndex === -1 ? categories[toCat].length : domIndex;
+      categories[toCat].splice(newIdx, 0, item);
+      saveData();
+      render();
+    });
+  });
+}
+	
+
 
 </script>
 </body>
